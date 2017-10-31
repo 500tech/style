@@ -1,6 +1,6 @@
 {
   "name": "fht-style",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Add styling configuration to a project",
   "main": "index.js",
   "scripts": {
@@ -8,9 +8,9 @@
   },
   "bin": "./index.js",
   "author": "Ilya Gelman <ilyagelman@ilyagelman.com>",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/500tech/style"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/500tech/style"
   },
   "license": "MIT"
 }
