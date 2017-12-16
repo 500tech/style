@@ -11,9 +11,11 @@ A tool for adding automatic code styling and formatting to existing JavaScript p
 ## What Does It Do
 
 1. Creates a separate branch `fht-styling`
-2. Installs [prettier](https://github.com/prettier/prettier) and [husky](https://github.com/typicode/husky) npm packages as dev-dependencies
+2. Installs [lint-staged](https://github.com/okonet/lint-staged), [prettier](https://github.com/prettier/prettier), and [husky](https://github.com/typicode/husky) npm packages as dev-dependencies
 3. Adds prettier configuration and pre-commit hook to package.json
 4. Commits all the changes to git
+
+*Note*: Webstorm does not stage files before committing through built-in VCS integration. For this reason, we have to use post-commit hook to reset staged files after the commit.
 
 
 ## MIT License

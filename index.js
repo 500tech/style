@@ -10,11 +10,12 @@ try {
   run('git checkout -b fht-styling');
 } catch (err) {}
 
+log('Installing ling-staged for capturing changed files...');
 log('Installing prettier for automatic code formatting...');
 log('Installing husky for git hooks...');
 
 try {
-  run('npm install --save-dev --save-exact prettier@1.7.4 husky@0.14.3');
+  run('npm install --save-dev --save-exact prettier@1.9.2 husky@0.14.3 lint-staged@6.0.0');
   log('Packages are installed!');
 } catch (err) {
   log('Could not install packages!');
@@ -36,9 +37,15 @@ const newConfig = Object.assign(packageConfig, {
     jsxBracketSameLine: true,
     requirePragma: false
   },
+  "lint-staged": {
+    "*.js": [
+      "./node_modules/.bin/prettier --write",
+      "git add"
+    ]
+  },
   scripts: Object.assign(packageConfig.scripts, {
-    precommit: "npm run prettier",
-    prettier: "staged=$(git diff --name-only HEAD | grep '.*\\.js$'); echo $staged | xargs ./node_modules/.bin/prettier --write; echo $staged | xargs git add"
+    precommit: "lint-staged",
+    postcommit: "git reset"
   })
 });
 
@@ -49,7 +56,7 @@ log('package.json was changed!');
 try {
   run('git add ./package.json');
   run('git add ./package-lock.json');
-  run('git commit --no-verify -m "Added `prettier` and `husky` packages, added automatic styling config to package.json"');
+  run('git commit --no-verify -m "Added `lint-staged`, `prettier`, and `husky` packages; added automatic styling config to package.json"');
 } catch (err) {}
 
 try {
