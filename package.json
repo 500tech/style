@@ -1,6 +1,6 @@
 {
   "name": "fht-style",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Add styling configuration to a project",
   "main": "index.js",
   "scripts": {
