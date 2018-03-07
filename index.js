@@ -5,17 +5,12 @@ const writeFile = require('fs').writeFileSync;
 
 const log = message => console.log('>', message);
 
-try {
-  run('git stash');
-  run('git checkout -b fht-styling');
-} catch (err) {}
-
-log('Installing ling-staged for capturing changed files...');
+log('Installing lint-staged for capturing changed files...');
 log('Installing prettier for automatic code formatting...');
 log('Installing husky for git hooks...');
 
 try {
-  run('npm install --save-dev --save-exact prettier@1.9.2 husky@0.14.3 lint-staged@6.0.0');
+  run('npm install --save-dev --save-exact prettier@1.11.1 husky@0.14.3 lint-staged@6.0.0');
   log('Packages are installed!');
 } catch (err) {
   log('Could not install packages!');
@@ -52,13 +47,3 @@ const newConfig = Object.assign(packageConfig, {
 writeFile(process.cwd() + '/package.json', JSON.stringify(newConfig, 2, 2));
 
 log('package.json was changed!');
-
-try {
-  run('git add ./package.json');
-  run('git add ./package-lock.json');
-  run('git commit --no-verify -m "Added `lint-staged`, `prettier`, and `husky` packages; added automatic styling config to package.json"');
-} catch (err) {}
-
-try {
-  run('git stash pop');
-} catch (err) {}
